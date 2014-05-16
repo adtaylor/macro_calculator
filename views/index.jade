@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  h1 Macro Calculator For Cutting
+  p 
+    | This macro calculator is based *entirely* on the work of Mike Samuels at the 
+    a(href='http://www.healthylivingheavylifting.com') Healthy Living, Heavy Lifting blog
+    |  on the great post, 
+    a(href="http://www.healthylivingheavylifting.com/how-to-calculate-macros-for-cutting/") How to Calculate Macros for Cutting
+    | .
+  
+  br
+  h3 Widget:
+  #macro-calc
+  script(type='text/javascript').
+    !function(d,s,id,url){
+      var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+url;fjs.parentNode.insertBefore(js,fjs);}
+    }(document,'script','macro-calc-script', '://#{url}/widget.js');
+
+  br
+  br
+  h3 Widget code:
+  p Copy and paste this code where you want the widget to load.
+  textarea#snippet
+    #macro-calc
+    script(type='text/javascript').
+      !function(d,s,id,url){
+        var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+url;fjs.parentNode.insertBefore(js,fjs);}
+      }(document,'script','macro-calc-script', '://#{url}/widget.js');
+
+

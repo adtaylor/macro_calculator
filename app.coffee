@@ -2,6 +2,7 @@
 ###
 Module dependencies.
 ###
+
 require("coffee-script/register")
 coffeescript = require('connect-coffee-script')
 express = require("express")

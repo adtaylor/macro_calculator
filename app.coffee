@@ -27,9 +27,38 @@ app.use app.router
 app.use require("stylus").middleware(__dirname + "/public")
 app.use express.static(path.join(__dirname, "public"))
 
+
+#
+# Keep heroku alive
+#
+startKeepAlive = ->
+  setInterval (->
+    options =
+      host: "macroscalculator.herokuapp.com"
+      port: 80
+      path: "/"
+
+    # optional logging... disable after it's working
+    http.get(options, (res) ->
+      res.on "data", (chunk) ->
+        try
+          console.log "HEROKU RESPONSE: " + chunk
+        catch err
+          console.log err.message
+        return
+
+      return
+    ).on "error", (err) ->
+      console.log "Error: " + err.message
+      return
+
+    return
+  ), 20 * 60 * 1000 # load every 20 minutes
+
 # development only
 app.use express.errorHandler()  if "development" is app.get("env")
 app.get "/", routes.index
 http.createServer(app).listen app.get("port"), ->
   console.log "Express server listening on port " + app.get("port")
+  startKeepAlive()
   return
